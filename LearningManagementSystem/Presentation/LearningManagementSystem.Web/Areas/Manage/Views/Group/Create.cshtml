@@ -1,0 +1,53 @@
+﻿@model CreateGroupVm
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Create Group</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Name">Name</label>
+                                <input asp-for="Name" required class="form-control">
+                                <span asp-validation-for="Name" class="text-danger"> </span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="MaxStudent">Capacity</label>
+                                <input asp-for="MaxStudent" required class="form-control">
+                                <span asp-validation-for="MaxStudent" class="text-danger"> </span>
+                            </div>
+                        </div> 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="RoomIds">Room</label>
+                                <select asp-for="RoomIds" asp-items="new SelectList(Model.Rooms,nameof(Room.Id),nameof(Room.Name))">
+                                    <option selected disabled>Select one</option>
+                                </select>
+                                <span asp-validation-for="RoomIds" class="text-danger"> </span>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="SubjectIds">Subject</label>
+                                <select asp-for="SubjectIds" asp-items="new SelectList(Model.Subjects,nameof(Subject.Id),nameof(Subject.Name))">
+                                    <option selected disabled>Select one</option>
+                                </select>
+                                <span asp-validation-for="SubjectIds" class="text-danger"> </span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

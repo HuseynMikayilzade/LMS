@@ -1,0 +1,27 @@
+﻿@model UpdateSettingVm
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Update Room</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Value">Value</label>
+                                <input asp-for="Value" required class="form-control">
+                                <span asp-validation-for="Value" class="text-danger"> </span>
+                            </div>
+                        </div>                            
+                    </div>
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

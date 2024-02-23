@@ -1,0 +1,80 @@
+﻿@using LearningManagementSystem.Domain.Entities;
+@using LearningManagementSystem.Domain.Enums;
+@model CreateAssignmentVm
+<div class="modal fade" id="createTaskModal" tabindex="-1" role="dialog" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createTaskModalLabel">Create Task</h5>
+                <button type="button" class="close" id="closeBtn" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createTaskForm" method="post" asp-action="create" asp-controller="assignment" asp-area="manage">
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="Name">Tittle</label>
+                                <input asp-for="Name" class="form-control" type="text" id="TaskName" placeholder="">
+                                <span asp-validation-for="Name"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="MaxPoint">Max point</label>
+                                <input asp-for="MaxPoint" class="form-control" type="number" id="MaxPoint" placeholder="">
+                                <span asp-validation-for="MaxPoint"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="TaskType">Task type</label>
+                                <select asp-for="TaskType" id="TaskType" class="form-control select">
+                                    <option disabled selected>Choose Type</option>
+                                    @foreach (var item in Enum.GetValues(typeof(TaskType)))
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                    <span asp-validation-for="TaskType"></span>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label asp-for="StartTime">Start Time</label>
+                                <input asp-for="StartTime" class="form-control" min="@DateTime.Now.ToString("yy-MM-dd")" id="StartTime" placeholder="">
+                                <span asp-validation-for="StartTime"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="EndTime">End Time</label>
+                                <input asp-for="EndTime" class="form-control" min="@DateTime.Today.ToString("yy-MM-dd")" id="EndTime" placeholder="">
+                                <span asp-validation-for="EndTime"></span>
+                            </div>
+                            <div class="form-group">
+                                <label asp-for="Description">Description</label>
+                                <input asp-for="Description" type="text" class="form-control" id="Description" placeholder="">
+                                <span asp-validation-for="Description"></span>
+                            </div>
+                            <div class="form-group">
+                                <label>Active/Deactive:</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" asp-for="IsActive"  id="IsAvailable">
+                                    <label class="form-check-label" for="isActiveCheckbox">Active</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div>
+                        <span class="text-danger" id="errorSpan"><br/></span>
+                    </div>                   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="closeBtn" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="CreateTask">Create Task</button>
+                    </div>
+                </form>
+
+            </div>
+           
+        </div>
+    </div>
+</div>

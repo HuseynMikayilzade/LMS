@@ -1,0 +1,106 @@
+﻿@model PaginationVm<Teacher>
+@{
+    int count = 0;
+}
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Teacher List</h5>
+    </div>
+    <div class="card-body">
+        <div class="page-header align-items-center">
+            <div class="row align-items-center">
+                <div class="col-4">
+                    <div class="top-nav-search">
+                        <form id="searchForm" asp-action="index" asp-controller="teacher">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Search here">
+                            <button class="btn" ><i class="fas fa-search"></i></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <div class="d-flex justify-content-around align-items-center">
+                       
+                        <a asp-action="archive" asp-controller="teacher">
+                            <button type="button" class="btn btn-primary fas fa-archive" alt="archive"></button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive mt-3 text-center ">
+            <table class="table table-striped mb-0 text-center">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Image</th>
+                        <th>Full Name</th>
+                        <th>Group(s)</th>
+                        <th>Subject(s)</th>
+                        <th></th>
+                        <th>Settings</th>
+                    </tr>
+                </thead>
+                <tbody class="text-center" id="tableBody">
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td class="align-middle">
+                                <img class="rounded-circle" src="~/assets/img/@item.Image" width="90" height="90" />
+                            </td>
+                            <td class="align-middle">@item.Name @item.Surname</td>
+                            <td class="align-middle">
+                                @(item.GroupTeachers.Any() ?
+                                    string.Join(", ", item.GroupTeachers.Select(group => group.Group.Name)) :
+                                    Html.Raw("<span class=\"text-danger\">empty</span>"))
+                            </td>
+                            <td class="align-middle">
+                                @(item.Subject != null ? item.Subject.Name : Html.Raw("<span class=\"text-danger\">empty</span>"))
+                            </td>
+                            <td class="align-middle">
+                                @(DateTime.Now.Subtract(item.CreateDate).Days <= 1 ?
+                                    Html.Raw("<span class=\"badge badge-gradient-info\">New</span>") :
+                                    Html.Raw(""))
+                            </td>
+                            <td class="align-middle">
+                                <div class="btn-group" role="group">
+                                    <a asp-action="update" asp-controller="teacher" asp-route-id="@item.Id" class="btn btn-warning"><i class='fas fa-edit'></i></a>
+                                    <a asp-action="softdelete" asp-controller="teacher" asp-route-id="@item.Id" id="confirm-text" class="btn btn-danger customDeletebtn"><i class='fas fa-trash'></i></a>
+                                    <a asp-action="detail" asp-controller="teacher" asp-route-id="@item.Id" class="btn btn-primary"><i class='fas fa-info'></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+
+            <div class="pt-5">
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous button -->
+                        <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-route-page="@(Model.CurrentPage - 1)" asp-action="index" asp-controller="teacher">Previous</a>
+                        </li>
+                        <!-- Page buttons -->
+                        @for (int i = 1; i <= Model.TotalPage; i++)
+                        {
+                            <li class="page-item  @(i == Model.CurrentPage ? "disabled active" : "")">
+                                <a class="page-link" asp-route-page="@i" asp-action="index" asp-controller="teacher">@i</a>
+                            </li>
+                        }
+                        <!-- Next button -->
+                        <li class="page-item @(Model.CurrentPage >= Model.TotalPage || Model.TotalPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-route-page="@(Model.CurrentPage + 1)" asp-action="index" asp-controller="teacher">Next</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,45 @@
+﻿@using LearningManagementSystem.Domain.Entities;
+@model List<Student>
+@{
+    int count = 0;
+}
+<div class="tab-pane" id="solid-rounded-justified-tab4" role="tabpanel">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">Students List</h5>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive mt-3 text-center ">
+                <table class="table table-striped mb-0 text-center">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Image</th>
+                            <th>Full Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center" id="tableBody">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@(++count)</td>
+                                <td class="align-middle">
+                                    <img class="rounded-circle" src="~/assets/img/@item.Image" width="90" height="90" />
+                                </td>
+                                <td class="align-middle">@item.Name @item.Surname</td>
+                                <td class="align-middle">
+                                    @(DateTime.Now.Subtract(item.CreateDate).Days <= 1 ?
+                                        Html.Raw("<span class=\"badge badge-gradient-info\">New</span>") :
+                                        Html.Raw(""))
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

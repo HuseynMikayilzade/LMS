@@ -1,0 +1,136 @@
+ public class CreateLessonVmValidator : AbstractValidator<CreateLessonVm>
+ {
+     int MIN_LENGTH = 1;
+     int MAX_LENGTH = 20;
+     public CreateLessonVmValidator()
+     {
+         RuleFor(l => l.Name).NotEmpty().WithMessage("Name is requireddddd")
+                         .MinimumLength(MIN_LENGTH).WithMessage($"Minimum character length is {MIN_LENGTH}")
+                         .MaximumLength(MAX_LENGTH).WithMessage($"Maximum character length is {MAX_LENGTH}")
+                         .Matches(@"^[a-zA-Z\s]*$").WithMessage("Name should only contain letters and spaces");
+         RuleFor(l => l.Tittle).NotEmpty().WithMessage("Name is required")
+                         .MinimumLength(MIN_LENGTH).WithMessage($"Minimum character length is {MIN_LENGTH}")
+                         .MaximumLength(30).WithMessage($"Maximum character length is 30")
+                         .Matches(@"^[a-zA-Z\s]*$").WithMessage("Name should only contain letters and spaces");
+         RuleFor(l => l.Date)
+          .NotEmpty().WithMessage("Date is required");
+
+         RuleFor(l => l.StartDate)
+             .NotEmpty().WithMessage("Start time is required");
+
+         RuleFor(l => l.EndDate)
+             .NotEmpty().WithMessage("End time is required")
+             .GreaterThan(l => l.StartDate).WithMessage("End time must be greater than start time");
+
+         RuleFor(l => l.SubjectId)
+             .NotEmpty().WithMessage("Subject is required");
+
+       
+     }
+ }
+
+
+
+
+
+
+
+
+Teacher list 
+
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">Subject List</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="page-header align-items-center">
+            <div class="row align-items-center">
+                <div class="col-4">
+                  
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <div class="d-flex justify-content-around align-items-center">
+                        <label class="mb-0">
+                            Show
+                            <select id="takeSelect" class="form-control">
+                                @*  <option ><a asp-action="index" asp-controller="lesson" asp-route-take="1">1</a></option>
+                                <option><a asp-action="index" asp-controller="lesson" asp-route-take="2">2</a></option>  *@
+                            </select>
+                            entries
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-3">
+            <table class="table table-striped mb-0 text-center">
+                <thead>
+                    <tr>
+
+                        <th>No</th>
+                        <th>Name</th>
+                        <th>Group name</th>
+
+                        <th></th>
+                        <th>Settings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@(++count)</td>
+                            <td>@item.Name</td>
+                            <td>
+                                @(item.GroupTeachers.Any() ?
+                                    string.Join(", ", item.GroupTeachers.Select(group => group.Group.Name)) :
+                                    Html.Raw("<span class=\"text-danger\">empty</span>"))
+                            </td>
+                            <td>
+                                @(DateTime.Now.Subtract(item.CreateDate).Days <= 1 ?
+                                    Html.Raw("<span class=\"badge badge-gradient-info\">New</span>") :
+                                    Html.Raw(""))
+                            </td>
+                            <td>
+                                <a asp-action="update" asp-controller="teacher" asp-route-id="@item.Id"><button type="button" class="btn btn-warning"><i class='fas fa-edit'></i></button></a>
+                                <a asp-action="delete" asp-controller="teacher" asp-route-id="@item.Id"><button type="button" class="btn btn-danger"><i class='fas fa-trash'></i></button></a>
+                                <a asp-action="detail" asp-controller="teacher" asp-route-id="@item.Id"><button type="button" class="btn btn-primary"><i class='fas fa-info'></i></button></a>
+                            </td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <div class="pt-5">
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous button -->
+                        <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-route-page="@(Model.CurrentPage - 1)" asp-action="index" asp-controller="teacher">Previous</a>
+                        </li>
+
+                        <!-- Page buttons -->
+                        @for (int i = 1; i <= Model.TotalPage; i++)
+                        {
+                            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                                <a class="page-link" asp-route-page="@i" asp-action="index" asp-controller="teacher">@i</a>
+                            </li>
+                        }
+
+                        <!-- Next button -->
+                        <li class="page-item @(Model.CurrentPage >= Model.TotalPage || Model.TotalPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-route-page="@(Model.CurrentPage + 1)" asp-action="index" asp-controller="teacher">Next</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+

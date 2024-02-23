@@ -1,0 +1,69 @@
+﻿@model TeacherResponseVm
+<div class="content container-fluid">
+    <div class="page-header">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">Task</li>
+            <li class="breadcrumb-item active">Update</li>
+        </ul>
+    </div>
+    <div class="card">
+        <div class="card-header">
+            <h5>Task Description</h5>
+            <br />
+            <p><b>Title:</b> @Model.StudentResponse.Assignment?.Name</p>
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>Max Point:</strong> @Model.StudentResponse.Assignment?.MaxPoint</p>
+                    <p><strong>Start Time:</strong> @Model.StudentResponse.Assignment?.StartTime</p>
+                </div>
+                <div class="col-6">
+                    <p><strong>Task Type:</strong> @Model.StudentResponse.Assignment?.TaskType</p>
+                    <p><strong>End Time:</strong> @Model.StudentResponse.Assignment?.EndTime</p>
+                </div>
+            </div>
+           
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    @Model.StudentResponse.Response
+                </div>
+                <div class="col-md-6 text-md-end">
+                    @if (Model.StudentResponse.AttachedFilePath != null)
+                    {
+                        <label><strong>Attached file</strong></label>
+                        <a href="~/uploads/@Model.StudentResponse.AttachedFilePath" download="" class="btn btn-primary">Download file</a>
+                    }
+                </div>
+            </div>
+        
+        </div>
+        <div class="card-footer">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly"></div>
+                <input type="hidden" asp-for="StudentResponse.AssignmentId" value="@Model.StudentResponse.AssignmentId">
+
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label asp-for="Point" for="point">Point:</label>
+                            <input class="form-control" asp-for="Point">
+                            <span asp-validation-for="Point"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="note">Note:</label>
+                            <textarea asp-for="Note" class="form-control" rows="3">Note </textarea>
+                            <span asp-validation-for="Note"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

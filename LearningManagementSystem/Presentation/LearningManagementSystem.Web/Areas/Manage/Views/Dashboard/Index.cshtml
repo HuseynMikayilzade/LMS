@@ -1,0 +1,200 @@
+﻿@model DashboardVm
+<div class="page-header">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-sub-header">
+                <h3 class="page-title">Welcome Admin!</h3>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item">Dashboard</li>
+                    <li class="breadcrumb-item active">Admin</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-xl-4 col-sm-6 col-12 d-flex">
+        <div class="card bg-comman w-100">
+            <div class="card-body">
+                <div class="db-widgets d-flex justify-content-between align-items-center">
+                    <div class="db-info">
+                        <a asp-action="index" asp-controller="student">
+                            <h6>Students</h6>
+                        </a>
+                        <h3>@Model.StudentCount</h3>
+                    </div>
+                    <div class="db-icon">
+                        <a asp-action="index" asp-controller="student">
+                            <img src="~/assets/img/icons/dash-icon-01.svg" alt="student">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-xl-4 col-sm-6 col-12 d-flex">
+        <div class="card bg-comman w-100">
+            <div class="card-body">
+                <div class="db-widgets d-flex justify-content-between align-items-center">
+                    <div class="db-info">
+                        <a asp-action="index" asp-controller="teacher"><h6>Teachers</h6></a>
+                        <h3>@Model.TeacherCount</h3>
+                    </div>
+                    <div class="db-icon">
+                        <a asp-action="index" asp-controller="teacher">
+                            <img height="50px;" src="~/assets/img/icons/teacher-icon.svg" alt="teacher">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-xl-4 col-sm-6 col-12 d-flex">
+        <div class="card bg-comman w-100">
+            <div class="card-body">
+                <div class="db-widgets d-flex justify-content-between align-items-center">
+                    <div class="db-info">
+                        <a asp-action="index" asp-controller="group">
+                            <h6>Groups</h6>
+                        </a>
+                        <h3>@Model.GroupCount</h3>
+                    </div>
+                    <div class="db-icon">
+                        <a asp-action="index" asp-controller="group">
+                            <img src="~/assets/img/icons/dash-icon-03.svg" alt="Group">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-xl-7 d-flex">
+        <!-- Star Students -->
+        <div class="card flex-fill student-space comman-shadow">
+            <div class="card-header d-flex align-items-center">
+                <h5 class="card-title">Star Students (Top 5)</h5>
+                <ul class="chart-list-out student-ellips">
+                    <li class="star-menus"><a href="javascript:;"><i class="fas fa-ellipsis-v"></i></a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table star-student table-hover table-center table-borderless table-striped">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>ID</th>
+                                <th>Fullname</th>
+                                <th class="text-center">Points</th>
+                                <th class="text-center">Average</th>
+                                <th class="text-end">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.StarStudents)
+                            {
+                                <tr>
+                                    <td class="text-nowrap">
+                                        <div>@item.Id</div>
+                                    </td>
+                                    <td class="text-nowrap">
+                                        <a href="profile.html">
+                                            <img class="rounded-circle" src="~/assets/img/@item.Image" width="25" alt="Star Students">
+                                            @item.Name @item.Surname
+                                        </a>
+                                    </td>
+                                    <td class="text-center">@item.Point</td>
+                                    <td class="text-center">@item.Avarage</td>
+                                    <td class="text-end">
+                                        <div>
+                                            @if (item.IsGraduated)
+                                            {
+                                                <span class="text-warning">Graduated</span>
+                                            }
+                                            else
+                                            {
+                                                <span>İs studying</span>
+                                            }
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- /Star Students -->
+    </div>
+
+    <div class="col-xl-5 d-flex">
+        <!-- Feed Activity -->
+        <div class="card flex-fill comman-shadow">
+            <div class="card-header d-flex align-items-center">
+                <h5 class="card-title ">Student Activity </h5>
+                <ul class="chart-list-out student-ellips">
+                    <li class="star-menus"><a href="javascript:;"><i class="fas fa-ellipsis-v"></i></a></li>
+                </ul>
+            </div>
+            <div class="card-body">
+                <div class="activity-groups">
+                    <div class="activity-awards">
+                        <div class="award-boxs">
+                            <img src="assets/img/icons/award-icon-01.svg" alt="Award">
+                        </div>
+                        <div class="award-list-outs">
+                            <h4>1st place in "Chess”</h4>
+                            <h5>John Doe won 1st place in "Chess"</h5>
+                        </div>
+                        <div class="award-time-list">
+                            <span>1 Day ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-awards">
+                        <div class="award-boxs">
+                            <img src="assets/img/icons/award-icon-02.svg" alt="Award">
+                        </div>
+                        <div class="award-list-outs">
+                            <h4>Participated in "Carrom"</h4>
+                            <h5>Justin Lee participated in "Carrom"</h5>
+                        </div>
+                        <div class="award-time-list">
+                            <span>2 hours ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-awards">
+                        <div class="award-boxs">
+                            <img src="assets/img/icons/award-icon-03.svg" alt="Award">
+                        </div>
+                        <div class="award-list-outs">
+                            <h4>Internation conference in "St.John School"</h4>
+                            <h5>Justin Leeattended internation conference in "St.John School"</h5>
+                        </div>
+                        <div class="award-time-list">
+                            <span>2 Week ago</span>
+                        </div>
+                    </div>
+                    <div class="activity-awards mb-0">
+                        <div class="award-boxs">
+                            <img src="assets/img/icons/award-icon-04.svg" alt="Award">
+                        </div>
+                        <div class="award-list-outs">
+                            <h4>Won 1st place in "Chess"</h4>
+                            <h5>John Doe won 1st place in "Chess"</h5>
+                        </div>
+                        <div class="award-time-list">
+                            <span>3 Day ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Feed Activity -->
+    </div>
+</div>

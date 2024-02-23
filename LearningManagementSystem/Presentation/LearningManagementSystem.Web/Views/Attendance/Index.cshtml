@@ -1,0 +1,79 @@
+﻿@using LearningManagementSystem.Domain.Entities
+@model List<Attendance>
+@{
+	
+	int count = 0;
+	IEnumerable<IGrouping<DateTime, Attendance>> groupedDate = Model.OrderBy(at => at.Date).GroupBy(at => at.Date);
+	List<DateTime> dates = new();
+	var firstattendance = Model.FirstOrDefault();
+	int groupid = firstattendance.GroupId;
+	DateTime Date = firstattendance.Date;
+}
+
+<div class="content container-fluid">
+	<div class="page-header">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">Attendance</li>
+			<li class="breadcrumb-item active">
+				@foreach (var item in groupedDate)
+				{
+					dates.Add(item.Key);
+					<th scope="col">@item.Key.ToString("dd.MM.yy")</th>
+				}
+			</li>
+		</ul>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<div class="table-responsive">
+				<table class="table" style="width: 100%">
+					<thead>
+						<tr>
+							<th scope="col">#</th>
+							<th scope="col">Full name</th>
+							<th scope="col">Attendance</th>
+							<th scope="col">Comment</th>
+						</tr>
+					</thead>
+					<tbody>
+						@foreach (var query in Model.GroupBy(at => at.Student))
+						{
+							Attendance item = Model.FirstOrDefault(x => x.Student == query.Key);
+							count++;
+							<tr>
+								<th scope="row">@count</th>
+								<td>@item.Student.Name @item.Student.Surname </td>
+								@foreach (DateTime date in dates)
+								{
+									Attendance attendance = Model.FirstOrDefault(x => x.Student == query.Key && x.Date == date);
+									@if (attendance is null)
+									{
+										<td><span class="badge bg-secondary">None</span></td>
+									}
+									else
+									{
+										<td>
+											@if (attendance.IsPresent)
+											{
+												<span class="badge bg-success">Participate</span>
+											}
+											else
+											{
+												<span class="badge bg-danger">Absent</span>
+											}
+
+										</td>
+									}
+								}
+								<td>@item.Comment</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div class="card-footer">
+			<a asp-action="update" asp-controller="attendance" asp-route-groupid="@groupid" asp-route-date="@Date"  class="btn btn-warning float-end">Update</a>
+		</div>
+	</div>
+</div>

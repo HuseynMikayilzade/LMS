@@ -1,0 +1,95 @@
+﻿@using LearningManagementSystem.Domain.Entities;
+@model ICollection<Assignment>
+@{
+    CreateAssignmentVm vm = new CreateAssignmentVm();
+    if (Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            vm.GroupId = item.GroupId;
+            break;
+        }
+    }
+}
+<div class="tab-pane" id="solid-rounded-justified-tab2" role="tabpanel">
+    <div>
+        <button type="button" class="btn btn-success mb-3" data-toggle="modal" data-target="#createTaskModal">Create Task</button>
+    </div>
+    @await Html.PartialAsync("_CreateTaskPartialView",vm)
+    <table class="table">
+        <tbody id="TaskTableBody">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Name [@item.TaskType.ToString()]</h5>
+                                <p class="card-text">@item.Description</p>
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#taskModal@(item.Id)">
+                                    Details
+                                </button>                              
+                                @if (item.IsActive == true)
+                                {
+                                    <button disabled type="button" class="btn  btn-outline-success">Active</button>
+                                }
+                                else
+                                {
+                                    <button disabled type="button" class="btn  btn-outline-secondary">Deactive</button>
+                                }
+
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    @foreach (var item in Model)
+    {
+        <div class="modal fade" id="taskModal@(item.Id)" tabindex="-1" role="dialog" aria-labelledby="taskModal@(item.Id)Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="taskModal@(item.Id)Label">@item.Name Details</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-6">
+                                <p><strong>Max Point:</strong> @item.MaxPoint</p>
+                                <p><strong>Start Time:</strong> @item.StartTime</p>
+                            </div>
+                            <div class="col-6">
+                                <p><strong>Task Type:</strong> @item.TaskType</p>
+                                <p><strong>End Time:</strong> @item.EndTime</p>
+                            </div>
+                        </div>
+                        <hr>
+                        <h6><strong>Description:</strong></h6>
+                        <p>@item.Description</p>
+                    </div>
+
+                    <div class="modal-footer">
+                        @if (item.IsActive)
+                        {
+                            <button type="button" class="btn btn-danger" id="deactivateButton" onclick="deactivateTask(@item.Id)">Deactivate</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-primary" id="activateButton" onclick="activateTask(@item.Id)">Activate</button>
+                        }
+                        <a asp-action="taskresponse" asp-controller="assignment" asp-route-id="@item.Id" class="btn btn-warning">Responses</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    <!-- Task 2 Modal -->
+
+</div>
+

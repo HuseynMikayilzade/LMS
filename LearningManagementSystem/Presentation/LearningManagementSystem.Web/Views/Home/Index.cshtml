@@ -1,0 +1,309 @@
+﻿@using LearningManagementSystem.Persistance.Implementations.Services;
+@inject DashboardLayoutService service
+@{
+    Layout = null;
+    Dictionary<string, string> setting = await service.GetSettings();
+}
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Edura</title>
+    <meta name="author" content="themeholy">
+    <meta name="description" content="Edura - Online Courses & Education HTML Template">
+    <meta name="keywords" content="Edura - Online Courses & Education HTML Template">
+    <meta name="robots" content="INDEX,FOLLOW">
+
+    <!-- Mobile Specific Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicons - Place favicon.ico in the root directory -->
+    <link rel="apple-touch-icon" sizes="57x57" href="~/home/assets/img/favicons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="~/home/assets/img/favicons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="~/home/assets/img/favicons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/home/assets/img/favicons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="~/home/assets/img/favicons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="~/home/assets/img/favicons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="~/home/assets/img/favicons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="~/home/assets/img/favicons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="~/home/assets/img/favicons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="~/home/assets/img/favicons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="~/home/assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="~/home/assets/img/favicons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="~/home/assets/img/favicons/favicon-16x16.png">
+    <link rel="manifest" href="~/home/assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="~/home/assets/img/favicons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!--==============================
+      Google Fonts
+    ============================== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Jost:wght@300;400;500;600;700;800;900&family=Roboto:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+
+
+    <!--==============================
+        All CSS File
+    ============================== -->
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="~/home/assets/css/bootstrap.min.css">
+    <!-- Fontawesome Icon -->
+    <link rel="stylesheet" href="~/home/assets/css/fontawesome.min.css">
+    <!-- Magnific Popup -->
+    <link rel="stylesheet" href="~/home/assets/css/magnific-popup.min.css">
+    <!-- Slick Slider -->
+    <link rel="stylesheet" href="~/home/assets/css/slick.min.css">
+    <!-- Nice Select -->
+    <link rel="stylesheet" href="~/home/assets/css/nice-select.min.css">
+    <!-- Theme Custom CSS -->
+    <link rel="stylesheet" href="~/home/assets/css/style.css">
+
+</head>
+
+<body>
+
+
+    <!--[if lte IE 9]>
+          <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+    <![endif]-->
+    <!--********************************
+        Code Start From Here
+    ******************************** -->
+
+
+    <!--==============================
+      Mobile Menu
+    ============================== -->
+    <div class="th-menu-wrapper">
+        <div class="th-menu-area text-center">
+            <button class="th-menu-toggle"><i class="fal fa-times"></i></button>
+            <div class="mobile-logo">
+                <a ><img src="~/home/assets/img/logo.svg" alt="Edura"></a>
+            </div>
+            <div class="th-mobile-menu">
+                <ul>
+                    
+           
+                    <li>
+                        <a href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--==============================
+        Header Area
+    ==============================-->
+    <header class="th-header header-layout3">
+        <div class="sticky-wrapper">
+            <!-- Main Menu Area -->
+            <div class="container th-container2">
+                <div class="menu-area">
+                    <div class="row align-items-center justify-content-between">
+                        <div class="col-auto">
+                            <div class="header-logo">
+                                <a href="index.html"><img src="~/home/assets/img/@setting["Logo"]" alt="Edura"></a>
+                            </div>
+                        </div>
+                       
+                        <div class="col-auto">
+                            <nav class="main-menu d-none d-lg-inline-block">
+                                <ul>                             
+                                    <li>
+                                        <a href="contact.html">Contact</a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <button type="button" class="th-menu-toggle d-block d-lg-none"><i class="far fa-bars"></i></button>
+                        </div>
+                        <div class="col-auto d-none d-xl-block">
+                            <div class="header-button">                               
+                                <a asp-action="login" asp-controller="account"  class="th-btn ml-25">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="logo-bg" data-bg-src="/home/assets/img/bg/logo-bg-3.png">
+            </div>
+        </div>
+    </header>
+    <!--==============================
+    Hero Area
+    ==============================-->
+    <div class="th-hero-wrapper hero-3" id="hero">
+        <div class="hero-slider-2 th-carousel" data-fade="true" data-slide-show="1" data-md-slide-show="1" data-arrows="true">
+
+
+            <div class="th-hero-slide">
+                <div class="th-hero-bg" data-bg-src="/home/assets/img/hero/home-slide-2.jpg"></div>
+                <div class="th-hero-bg-overlay" data-bg-src="/home/assets/img/hero/hero_overlay_3_1.jpg"></div>
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="hero-style3 text-center">
+                                <span class="hero-subtitle text-white" data-ani="slideinup" data-ani-delay="0.1s">The World’s Best Institute Of</span>
+                                <h1 class="hero-title text-white" data-ani="slideinup" data-ani-delay="0.4s">Online Education</h1>
+                           
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="th-hero-slide">
+                <div class="th-hero-bg" data-bg-src="/home/assets/img/hero/home-slide.jpg"></div>
+                <div class="th-hero-bg-overlay" data-bg-src="/home/assets/img/hero/hero_overlay_3_1.jpg"></div>
+                <div class="container">
+                    <div class="row align-items-center justify-content-center">
+                        <div class="col-lg-12">
+                            <div class="hero-style3 text-center">
+                                <span class="hero-subtitle text-white" data-ani="slideinup" data-ani-delay="0.1s">Unlock The Power Of Learning</span>
+                                <h1 class="hero-title text-white" data-ani="slideinup" data-ani-delay="0.4s">Empower Your Future</h1>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-shape shape1 movingX d-md-block d-none">
+            <img src="~/home/assets/img/hero/shape_3_1.png" alt="shape">
+        </div>
+        <div class="hero-shape shape2 d-sm-block d-none">
+            <img class="spin" src="~/home/assets/img/hero/shape_3_2.png" alt="shape">
+        </div>
+        <div class="hero-shape shape3 spin d-sm-block d-none">
+            <img src="~/home/assets/img/hero/shape_2_4.png" alt="shape">
+        </div>
+    </div>
+    <!--======== / Hero Section ========-->
+    <!--==============================
+    Contact Area
+    ==============================-->
+   
+
+    <!--==============================
+        Footer Area
+    ==============================-->
+    <footer class="footer-wrapper footer-layout-2" data-bg-src="/home/assets/img/bg/footer-bg.png">
+        <div class="shape-mockup footer-shape1 jump" data-left="60px" data-top="70px">
+            <img src="~/home/assets/img/normal/footer-bg-shape1.png" alt="img">
+        </div>
+        <div class="shape-mockup footer-shape2 jump-reverse" data-right="80px" data-bottom="120px">
+            <img src="~/home/assets/img/normal/footer-bg-shape2.png" alt="img">
+        </div>
+        <div class="widget-area">
+            <div class="container">
+                <div class="row justify-content-between">
+                    <div class="col-md-6 col-xxl-3 col-xl-3">
+                        <div class="widget footer-widget">
+                            <div class="th-widget-about">
+                                <div class="about-logo">
+                                    <a href="index.html"><img src="~/home/assets/img/@setting["Logo"]" alt="Edura"></a>
+                                </div>
+                                <p class="about-text">@setting["Desc"]</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-xl-auto">
+                        <div class="th-social">
+                            <h6 class="title text-white">FOLLOW US ON:</h6>
+                            @Html.Raw(setting["Insta"])
+                            @Html.Raw(setting["LinkIn"])   
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-6 col-xxl-3 col-xl-3">
+                        <div class="widget widget_contact footer-widget">
+                            <h3 class="widget_title">Get in touch!</h3>
+                     
+                            <div class="th-widget-contact">
+                                <div class="info-box-wrap">
+                                    <div class="info-box_icon">
+                                        <i class="fas fa-location-dot"></i>
+                                    </div>
+                                    <p class="info-box_text">
+                                        @setting["Location"]
+                                    </p>
+                                </div>
+                                <div class="info-box-wrap">
+                                    <div class="info-box_icon">
+                                        <i class="fas fa-envelope"></i>
+                                    </div>
+                                    <a href="" class="info-box_link">@setting["Mail"]</a>
+                                </div>
+                                <div class="info-box-wrap">
+                                    <div class="info-box_icon">
+                                        <i class="fas fa-phone"></i>
+                                    </div>
+                                    <a  class="info-box_link">@setting["Phone"]</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-wrap">
+            <div class="container">
+                <div class="row justify-content-between align-items-center">
+                    <div class="col-md-6">
+                        <p class="copyright-text">Copyright © 2023 <a>Edura</a> All Rights Reserved.</p>
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!--********************************
+            Code End  Here
+    ******************************** -->
+    <!-- Scroll To Top -->
+    <div class="scroll-top">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
+        </svg>
+    </div>
+
+    <!--==============================
+        All Js File
+    ============================== -->
+    <!-- Jquery -->
+    <script src="~/home/assets/js/vendor/jquery-3.6.0.min.js"></script>
+    <!-- Slick Slider -->
+    <script src="~/home/assets/js/slick.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/home/assets/js/bootstrap.min.js"></script>
+    <!-- Magnific Popup -->
+    <script src="~/home/assets/js/jquery.magnific-popup.min.js"></script>
+    <!-- Counter Up -->
+    <script src="~/home/assets/js/jquery.counterup.min.js"></script>
+    <!-- Circle Progress -->
+    <script src="~/home/assets/js/circle-progress.js"></script>
+    <!-- Range Slider -->
+    <script src="~/home/assets/js/jquery-ui.min.js"></script>
+    <!-- Isotope Filter -->
+    <script src="~/home/assets/js/imagesloaded.pkgd.min.js"></script>
+    <script src="~/home/assets/js/isotope.pkgd.min.js"></script>
+    <!-- Tilt JS -->
+    <script src="~/home/assets/js/tilt.jquery.min.js"></script>
+    <!-- Tweenmax JS -->
+    <script src="~/home/assets/js/tweenmax.min.js"></script>
+    <!-- Nice Select JS -->
+    <script src="~/home/assets/js/nice-select.min.js"></script>
+
+    <!-- Main Js File -->
+    <script src="~/home/assets/js/main.js"></script>
+
+</body>
+
+</html>

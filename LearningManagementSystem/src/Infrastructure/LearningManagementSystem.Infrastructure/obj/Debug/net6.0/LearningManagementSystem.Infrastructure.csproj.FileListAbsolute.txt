@@ -1,0 +1,45 @@
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.deps.json
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfo.cs
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\refint\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\User\Desktop\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\ref\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.deps.json
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfo.cs
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\refint\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\User\Desktop\Layihe temp\LMS\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\ref\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.deps.json
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfo.cs
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\refint\LearningManagementSystem.Infrastructure.dll
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\User\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\ref\LearningManagementSystem.Infrastructure.dll
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.deps.json
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\bin\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.AssemblyInfo.cs
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.sourcelink.json
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.dll
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\refint\LearningManagementSystem.Infrastructure.dll
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\LearningManagementSystem.Infrastructure.pdb
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Infrastructure\LearningManagementSystem.Infrastructure\obj\Debug\net6.0\ref\LearningManagementSystem.Infrastructure.dll

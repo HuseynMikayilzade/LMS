@@ -1,0 +1,69 @@
+﻿@model PaginationVm<Setting>
+
+<div class="card">
+    <div class="card-header">
+        <h5 class="card-title">setting List</h5>
+    </div>
+
+    <div class="card-body">
+        <div class="page-header align-items-center">
+            <div class="row align-items-center">
+                <div class="col-4">
+                   
+                </div>
+                <div class="col-4">
+                </div>
+                <div class="col-4">
+                    <div class="d-flex justify-content-around align-items-center">
+                      
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="table-responsive mt-3">
+            <table class="table table-striped mb-0 text-center">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Key</th>
+                        <th>Value</th>                       
+                        <th>Settings</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Items)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Key</td>
+                            <td>@item.Value</td>                           
+                            <td>
+                                <a asp-action="update" asp-controller="setting" asp-route-id="@item.Id"><button type="button" class="btn btn-warning"><i class='fas fa-edit'></i></button></a>                              
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+           <div class="pt-5">
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination justify-content-center">
+                        <li class="page-item @(Model.CurrentPage<=1 ? "disabled" : "active")">
+                            <a class="page-link " asp-route-page="@(Model.CurrentPage-1)" asp-action="index" asp-controller="setting">Previous</a>
+                        </li>
+                        @for (int i = 0; i < Model.TotalPage; i++)
+                        {
+                            <li class="page-item @(Model.CurrentPage-1==i ? "btn-success active disabled" : "")">
+                                <a class="page-link" asp-route-page="@(i+1)" asp-action="index" asp-controller="setting">@(i + 1)</a>
+                            </li>
+                        }
+                        <li class="page-item @(Model.TotalPage==Model.CurrentPage || Model.CurrentPage==1? "disabled" : "active")">
+                            <a class="page-link " asp-route-page="@(Model.CurrentPage+1)" asp-action="index" asp-controller="setting">Next</a>
+                        </li>
+                    </ul>
+                </nav>
+           </div>
+        </div>
+    </div>
+</div>
+

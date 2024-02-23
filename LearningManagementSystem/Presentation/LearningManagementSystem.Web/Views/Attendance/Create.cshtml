@@ -1,0 +1,61 @@
+﻿@model CreateAttendanceVm
+@{
+	int count = 0;
+}
+<div class="content container-fluid">
+	<div class="page-header">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">Attendance</li>
+			<li class="breadcrumb-item active">Create</li>
+		</ul>
+	</div>
+	<div class="card">
+		<div class="card-body">
+			<form method="post">
+				<div class="mb-2">
+					<label asp-for="Date">Choose date</label>
+					<input asp-for="Date" class="form-control" type="date" value="@DateTime.Now.ToString("yy-MM-dd")" />
+					<span class="text-danger" asp-validation-for="Date"></span>
+				</div>
+				<div class="mb-2">
+					<table class="table text-center">
+						<thead>
+							<tr class="text-center">
+								<th scope="col">#</th>
+								<th scope="col">Student</th>
+								<th scope="col">Attendance</th>
+								<th scope="col">Comment</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (AttendanceVm item in Model.AttendanceVm)
+							{
+								count++;
+								<tr>
+									<td class="align-middle">@count</td>
+									<td class="align-middle">@item.Student.Name @item.Student.Surname </td>
+									<td>
+										<input type="hidden" name="StudentIds" value="@item.StudentId">
+										<select class="form-control" name="IsPresents">
+											<option value="true">Present</option>
+											<option value="false">Absent</option>
+										</select>
+									</td>
+
+									<td><input type="text" class="form-control" name="Comments" value="@item.Comment" placeholder="Comment" /></td>
+								</tr>
+							}
+							<span class="text-danger" asp-validation-for="StudentIds"></span>
+							<span class="text-danger" asp-validation-for="IsPresents"></span>
+							<span class="text-danger" asp-validation-for="Comments"></span>
+						</tbody>
+					</table>
+				</div>
+				<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+				<div class="mt-1">
+					<button type="submit" class="btn btn-primary">Add</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

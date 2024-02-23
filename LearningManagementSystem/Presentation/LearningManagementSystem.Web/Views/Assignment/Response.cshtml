@@ -1,0 +1,83 @@
+﻿@model StudentResponseVm
+<div class="content container-fluid">
+	<div class="page-header">
+		<ul class="breadcrumb">
+			<li class="breadcrumb-item">Student</li>
+			<li class="breadcrumb-item active">Response</li>
+		</ul>
+	</div>
+	<div class="card">
+		<div class="card-header">
+			<h5>Task Description</h5>
+			<p><b>Tittle: </b>@Model.Assignment?.Name</p>
+			<div class="row">
+				<div class="col-6">
+					<p><strong>Max Point:</strong> @Model.Assignment?.MaxPoint</p>
+					<p><strong>Start Time:</strong> @Model.Assignment?.StartTime</p>
+				</div>
+				<div class="col-6">
+					<p><strong>Task Type:</strong> @Model.Assignment?.TaskType</p>
+					<p><strong>End Time:</strong> @Model.Assignment?.EndTime</p>
+				</div>
+			</div>
+			<hr>
+		</div>
+		<div class="card-body">
+			@if (!Model.IsSended)
+			{
+				<form id="responseForm" method="post" enctype="multipart/form-data" asp-action="response" asp-controller="assignment" asp-route-id="@Model.Assignment.Id">
+					<div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+					<div class="form-group">
+						<label asp-for="Response" for="responseContent">Response:</label>
+						<textarea asp-for="Response" class="form-control" id="responseContent" rows="3"></textarea>
+						<span asp-validation-for="Response" class="text-danger"></span>
+					</div>
+					<div class="form-group">
+						<label asp-for="AttachedFile" for="responseFile">File:</label>
+						<input asp-for="AttachedFile" class="form-control" id="responseFile">
+						<span asp-validation-for="AttachedFile" class="text-danger"></span>
+					</div>
+					<div class="col-12 d-flex justify-content-between">
+						<div>
+						</div>
+						<div class="student-submit">
+							<button type="submit" class="btn btn-primary">Response</button>
+						</div>
+					</div>
+				</form>
+			}
+			else
+			{
+				@if (!Model.IsReplied)
+				{
+					<div class="card-body">
+						<div class="row">
+							<div class="col-6">
+								<h6>This assignment already answered.</h6>
+							</div>
+							<div class="col-6">
+								<div class="text-center">
+									<span>Do you want to change your answer?</span>
+								</div>
+								<div class="text-center">
+									<a asp-action="updateresponse" asp-controller="assignment" asp-route-id="@Model.Assignment.Id" class="btn btn-warning">Update</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				}
+				else
+				{
+					<a>Teacher Reply </a>
+					<div class="card-body">
+						<h6>Point: @Model.Point</h6>
+
+						<h6>
+							Note: @(Model.TeacherNote == null ? Html.Raw("<span>-</span>") : Model.TeacherNote)
+						</h6>
+					</div>
+				}
+			}
+		</div>
+	</div>
+</div>

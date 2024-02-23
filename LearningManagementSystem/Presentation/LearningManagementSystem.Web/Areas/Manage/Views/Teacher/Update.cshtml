@@ -1,0 +1,199 @@
+﻿@using LearningManagementSystem.Application.ViewModels;
+@using LearningManagementSystem.Domain.Enums;
+@model UpdateTeacherVm
+
+
+<div class="content container-fluid">
+
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">Update Teacher [@Model.Name @Model.Surname]</h3>
+                <ul class="breadcrumb">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="form-title"><span>Basic Details</span></h5>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Name">Name </label>
+                                    <input asp-for="Name" class="form-control" placeholder="Enter Name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Surname">Surname</label>
+                                    <input asp-for="Surname" class="form-control" placeholder="Enter Surname">
+                                    <span asp-validation-for="Surname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Gender">Gender</label>
+                                    <select asp-for="Gender" class="form-control select">
+                                        <option disabled selected>Choose Gender</option>
+                                        @foreach (var item in Enum.GetValues(typeof(Gender)))
+                                        {
+                                            <option value="@item">@item</option>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+                                        }
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Birthday">Date Of Birth </label>
+                                    <input asp-for="Birthday" type="date" max="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control">
+                                    <span asp-validation-for="Birthday" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="PhoneNumber">Phone Number</label>
+                                    <input asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone Number">
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Description">Description </label>
+                                    <input asp-for="Description" class="form-control" placeholder="Enter your description">
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group students-up-files">
+                                    <div class="image-container">
+                                        <img src="~/assets/img/@Model.Image" alt="image" class="img-fluid rounded-circle" width="150" height="150">
+                                        <input asp-for="Image" type="hidden" value="@Model.Image" />
+                                        
+                                    </div>
+                                    <label>Upload User Photo (150px X 150px)</label>
+                                    <div class="uplod">
+                                        <label asp-for="Photo" class="file-upload image-upbtn mb-0">
+                                            Choose Photo<input asp-for="Photo" class="d-none" onchange="previewPhoto(this)">
+                                        </label>
+                                        <span asp-validation-for="Photo" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group">
+                                    <label asp-for="GroupIds" class="col-form-label">Group</label>
+                                    <div>
+                                        <select asp-for="GroupIds" class="form-control" style="height:150px;" asp-items="new SelectList(Model.Groups, nameof(Group.Id), nameof(Group.Name))">
+                                            <option value="" disabled selected>Select one or more </option>
+                                        </select>
+                                        <span asp-validation-for="GroupIds" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group">
+                                    <label asp-for="SubjectId">Subject</label>
+                                    <select asp-for="SubjectId" asp-items="new SelectList(Model.Subjects,nameof(Subject.Id),nameof(Subject.Name))">
+                                        <option selected disabled>Select one</option>
+                                    </select>
+                                    <span asp-validation-for="SubjectId" class="text-danger"> </span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <h3 class="form-title"><span>Login Details</span></h3>
+                                <div class="student-submit mb-5">
+                                    <a asp-action="ResetPasswordDefault" asp-controller="user" asp-area="manage" class="btn btn-danger mt-1" id="resetPasswordBtn">Reset Password (default)</a>
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 d-flex justify-content-between">
+                                <div>
+                                    <a asp-action="index" asp-controller="teacher" class="btn btn-warning">
+                                        <i class="fas fa-caret-left"></i> Back
+                                    </a>
+                                </div>
+                                <div class="student-submit">
+                                    <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function previewPhoto(input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var imageContainer = input.closest('.form-group').querySelector('.image-container');
+            var img = imageContainer.querySelector('img');
+            img.src = e.target.result;
+            imageContainer.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+    //============= Reset password default ===========//
+    document.getElementById('resetPasswordBtn').addEventListener('click', function (b) {
+        b.preventDefault();
+
+        Swal.fire({
+            icon: 'warning',
+            title: 'Warning!',
+            text: 'Are you sure you want to reset the password?',
+            showCancelButton: true,
+            confirmButtonText: 'Continue',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                var currentUrl = window.location.href;
+                var urlParts = currentUrl.split('/');
+                var id = urlParts[urlParts.length - 1];
+                var resetPasswordUrl = 'https://localhost:7064/manage/user/ResetPasswordDefaultTeacher/' + id;
+                fetch(resetPasswordUrl, {
+                    method: 'POST'
+                }).then((response) => {
+                    if (response.ok) {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Success!',
+                            text: 'Password reset successfully!'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'An error occurred while resetting the password.'
+                        });
+                    }
+                }).catch((error) => {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'An error occurred while resetting the password.'
+                    });
+                });
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                Swal.fire({
+                    icon: 'info',
+                    title: 'Cancelled',
+                    text: 'Password reset cancelled.',
+                    showConfirmButton: false
+                });
+            }
+        });
+    });
+</script>

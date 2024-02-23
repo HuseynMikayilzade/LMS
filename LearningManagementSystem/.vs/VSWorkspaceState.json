@@ -1,0 +1,17 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Presentation",
+    "\\Presentation\\LearningManagementSystem.Web",
+    "\\Presentation\\LearningManagementSystem.Web\\Areas",
+    "\\Presentation\\LearningManagementSystem.Web\\Areas\\Manage",
+    "\\Presentation\\LearningManagementSystem.Web\\Areas\\Manage\\Controllers",
+    "\\src",
+    "\\src\\Core",
+    "\\src\\Core\\LearningManagementSystem.Domain",
+    "\\src\\Core\\LearningManagementSystem.Domain\\Entities",
+    "\\src\\Core\\LearningManagementSystem.Domain\\Entities\\BaseEntity"
+  ],
+  "SelectedNode": "\\LearningManagementSystem.sln",
+  "PreviewInSolutionExplorer": false
+}

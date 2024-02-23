@@ -1,0 +1,51 @@
+﻿@using LearningManagementSystem.Domain.Entities;
+@model ICollection<StudentResponse>
+@{
+    int count = 0;
+}
+<div class="content container-fluid">
+    <div class="page-header">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item">Students'</li>
+            <li class="breadcrumb-item active">Responses</li>
+        </ul>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped text-center">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Fullname</th>
+                            <th>Submission time</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center">
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td class="align-middle">@(++count)</td>
+                                <td class="align-middle">@item.Student.Name @item.Student.Surname</td>
+                                <td class="align-middle">
+                                    @item.CreateDate @(item.Assignment.EndTime > item.CreateDate ? Html.Raw("<span class=\"text-danger\">[delayed]</span>") : "")
+                                </td>
+                                <td class="align-middle">
+                                    @if (item.IsReplied)
+                                    {
+                                        <a class="btn btn-warning" asp-action="update" asp-controller="assignment" asp-route-id="@item.Id">Update</a>
+                                    }
+                                    else
+                                    {
+                                        <a class="btn btn-primary" asp-action="detail" asp-controller="assignment" asp-route-id="@item.Id">Details</a>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,154 @@
+﻿@using LearningManagementSystem.Application.ViewModels;
+@using LearningManagementSystem.Domain.Enums;
+@model RegisterVm
+
+<div class="content container-fluid">
+
+    <div class="page-header">
+        <div class="row align-items-center">
+            <div class="col">
+                <h3 class="page-title">User Register</h3>
+                <ul class="breadcrumb">
+                   
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="row">
+                            <div class="col-12">
+                                <h5 class="form-title"><span>Basic Details</span></h5>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Name">Name <span class="login-danger">*</span></label>
+                                    <input asp-for="Name" class="form-control" placeholder="Enter Name">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Surname">Surname <span class="login-danger">*</span></label>
+                                    <input asp-for="Surname" class="form-control" placeholder="Enter Surname">
+                                    <span asp-validation-for="Surname" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Gender">Gender <span class="login-danger">*</span></label>
+                                    <select asp-for="Gender" class="form-control select">
+                                        <option disabled selected>Choose Gender</option>
+                                        @foreach (var item in Enum.GetValues(typeof(Gender)))
+                                        {
+                                            <option value="@item">@item</option>
+                                            <span asp-validation-for="Gender" class="text-danger"></span>
+                                        }
+                                    </select>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Role">Role <span class="login-danger">*</span></label>
+                                    <select asp-for="Role" class="form-control select">
+                                        <option disabled selected>Choose Role</option>
+                                        @foreach (var item in Enum.GetValues(typeof(Role)))
+                                        {
+                                            <option value="@item">@item</option>
+                                        }
+                                        <span asp-validation-for="Role" class="text-danger"></span>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="BirthDay">Date Of Birth <span class="login-danger">*</span></label>
+                                    <input asp-for="BirthDay" type="date" max="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control">
+                                    <span asp-validation-for="BirthDay" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="PhoneNumber">Phone Number <span class="login-danger">*</span></label>
+
+                                    <input asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone Number">
+
+                                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                                </div>
+
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group students-up-files">
+                                    <div class="image-preview" style="display: none;">
+                                        <img id="photo-preview" src="#" alt="Photo Preview" class="img-fluid rounded-circle" width="150" height="150">
+                                    </div>
+
+                                    <label>Upload User Photo (150px X 150px)</label>
+                                    <div class="uplod">
+                                        <label asp-for="Photo" class="file-upload image-upbtn mb-0">
+                                            Choose Photo <input asp-for="Photo" onchange="previewPhoto(this)">
+                                        </label>
+                                        <span asp-validation-for="Photo" class="text-danger"></span>
+                                    </div>
+
+                                   
+                                </div>
+                            </div>
+                           
+
+                            <div class="col-12">
+                                <h5 class="form-title"><span>Login Details</span></h5>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="EmailAdress">Email <span class="login-danger">*</span></label>
+                                    <input asp-for="EmailAdress" class="form-control" placeholder="Enter Email Adress">
+                                    <span asp-validation-for="EmailAdress" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="Password">Password <span class="login-danger">*</span></label>
+                                    <input asp-for="Password" class="form-control" placeholder="Enter Password">
+                                    <span asp-validation-for="Password" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <div class="form-group local-forms">
+                                    <label asp-for="ConfirmPassword">Confirm Password <span class="login-danger">*</span></label>
+                                    <input asp-for="ConfirmPassword" class="form-control" placeholder="Confirm Password">
+                                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="student-submit">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function previewPhoto(input) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            var previewImg = document.getElementById('photo-preview');
+            previewImg.src = e.target.result;
+            var previewDiv = input.closest('.form-group').querySelector('.image-preview');
+            previewDiv.style.display = 'block';
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+</script>
