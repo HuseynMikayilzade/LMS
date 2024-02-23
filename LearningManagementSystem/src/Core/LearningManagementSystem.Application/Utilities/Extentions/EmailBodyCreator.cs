@@ -70,30 +70,25 @@ namespace LearningManagementSystem.Application.Utilities.Extentions
 			return body;
 		}
 
-//		public static string EmailBodyForTask(Assignment assignment, Student student)
-//		{
-//            string body = $@"<!DOCTYPE html>
-//<html lang=""en"">
-//<head>
-//    <meta charset=""UTF-8"">
-//    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
-//    <title>Task Cevaplandırıldı</title>
-//</head>
-//<body>
-//    <div style=""max-width: 600px; margin: 0 auto; padding: 20px;"">
-//        <h2>Taskiniz Cevaplandırıldı</h2>
-//        <p>Merhaba [Öğrenci İsmi],</p>
-//        <p>Size iletmek istediğimiz bilgiye göre, taskiniz başarıyla cevaplandırıldı.</p>
-//        <p>Cevap:</p>
-//        <p>[Öğrenci cevabı buraya gelecek]</p>
-//        <p>Eğer herhangi bir sorunuz veya ek bilgi talebiniz varsa lütfen bize ulaşın.</p>
-//        <p>İyi günler dileriz,</p>
-//        <p>[Öğretmen İsmi]</p>
-//    </div>
-//</body>
-//</html>
-//";
+        public static string EmailBodyForTask(Assignment assignment, Student student)
+        {
+            string body = $@"<!DOCTYPE html>
+                   <html lang=""en"">
+                   <head>
+                       <meta charset=""UTF-8"">
+                       <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"">
+                       <title>Task Replied</title>
+                   </head>
+                         <body>
+                            <div style=""max-width: 600px; margin: 0 auto; padding: 20px;"">
+                               <div>
+                                     <h3>Hi {student.Group.Name} {student.Name} {student.Surname},</h3>                          
+                                     <p>Your assignment ""{assignment.Name}"" has been graded by the teacher.</p>                                           
+                              </div>
+                         </body>
+                   </html>";
+            return body;
 
-//		}
-	}
+        }
+    }
 }

@@ -1062,3 +1062,4 @@ C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\Presenta
 C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\Presentation\LearningManagementSystem.Web\obj\Debug\net6.0\LearningManagementSystem.Web.pdb
 C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\Presentation\LearningManagementSystem.Web\obj\Debug\net6.0\LearningManagementSystem.Web.genruntimeconfig.cache
 C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\Presentation\LearningManagementSystem.Web\obj\Debug\net6.0\ref\LearningManagementSystem.Web.dll
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\Presentation\LearningManagementSystem.Web\obj\Debug\net6.0\LearningManagementSystem.Web.sourcelink.json

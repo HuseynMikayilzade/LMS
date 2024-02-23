@@ -15,6 +15,7 @@ namespace LearningManagementSystem.Application.ViewModels
         public IFormFile? AttachedFile { get; set; }
         public int? AssignmentId { get; set; }
         public Assignment? Assignment { get; set; }
+        public int StudentId { get; set; }
         public bool IsSended { get; set; }
         public bool IsReplied { get; set; }
 

@@ -797,7 +797,7 @@ namespace LearningManagementSystem.Persistance.DAL.Migrations
                     b.Property<double>("Point")
                         .HasColumnType("float");
 
-                    b.Property<int>("StudentId")
+                    b.Property<int>("StudentResponseId")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("UpdateDate")
@@ -811,7 +811,7 @@ namespace LearningManagementSystem.Persistance.DAL.Migrations
 
                     b.HasIndex("AssignmentId");
 
-                    b.HasIndex("StudentId");
+                    b.HasIndex("StudentResponseId");
 
                     b.ToTable("TeacherResponses");
                 });
@@ -1123,15 +1123,15 @@ namespace LearningManagementSystem.Persistance.DAL.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("LearningManagementSystem.Domain.Entities.Student", "Student")
+                    b.HasOne("LearningManagementSystem.Domain.Entities.StudentResponse", "StudentResponse")
                         .WithMany()
-                        .HasForeignKey("StudentId")
+                        .HasForeignKey("StudentResponseId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Assignment");
 
-                    b.Navigation("Student");
+                    b.Navigation("StudentResponse");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

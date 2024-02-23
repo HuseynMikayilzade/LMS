@@ -17,7 +17,7 @@ namespace LearningManagementSystem.Application.Abstraction.Services
         Task<bool> DeleteAsync(int id);
         Task ActivateAsync(int id);
         Task DeActivateAsync(int id);
-        Task<StudentResponseVm> GetStudentResponseAsync(int id);
+        Task<StudentResponseVm> GetStudentResponseAsync(int id,string userid);
         Task<TeacherResponseVm> ResponseDetailAsync(int id);
         Task<UpdateStudenResponseVm> GetUpdateStudenResponse(int id);
         Task<bool> UpdateStudentResponse(int id,UpdateStudenResponseVm vm,ModelStateDictionary modelstate);   

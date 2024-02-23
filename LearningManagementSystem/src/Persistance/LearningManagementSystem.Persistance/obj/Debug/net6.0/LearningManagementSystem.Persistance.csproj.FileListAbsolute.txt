@@ -74,3 +74,4 @@ C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Pers
 C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Persistance\LearningManagementSystem.Persistance\obj\Debug\net6.0\LearningManagementSystem.Persistance.pdb
 C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Persistance\LearningManagementSystem.Persistance\obj\Debug\net6.0\LearningManagementSystem.Persistance.genruntimeconfig.cache
 C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Persistance\LearningManagementSystem.Persistance\obj\Debug\net6.0\ref\LearningManagementSystem.Persistance.dll
+C:\Users\ASUS\Desktop\LearningManagementSystem\LearningManagementSystem\src\Persistance\LearningManagementSystem.Persistance\obj\Debug\net6.0\LearningManagementSystem.Persistance.sourcelink.json

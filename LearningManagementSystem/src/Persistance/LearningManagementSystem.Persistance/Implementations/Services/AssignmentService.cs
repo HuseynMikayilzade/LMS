@@ -26,10 +26,11 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
         private readonly IStudentRepo _studentRepo;
         private readonly ITeacherResponseRepo _teacherResponseRepo;
         private readonly UserManager<AppUser> _userManager;
+		private readonly IEmailService _emailService;
 
-        public AssignmentService(IAssignmentRepo repo, IWebHostEnvironment env,
+		public AssignmentService(IAssignmentRepo repo, IWebHostEnvironment env,
             IStudentResponseRepo studentResponseRepo, IStudentRepo studentRepo,
-            ITeacherResponseRepo teacherResponseRepo, UserManager<AppUser> userManager)
+            ITeacherResponseRepo teacherResponseRepo, UserManager<AppUser> userManager,IEmailService emailService)
         {
             _repo = repo;
             _env = env;
@@ -37,7 +38,8 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
             _studentRepo = studentRepo;
             _teacherResponseRepo = teacherResponseRepo;
             _userManager = userManager;
-        }
+			_emailService = emailService;
+		}
         public async Task<bool> CreateAsync(CreateAssignmentVm vm, ModelStateDictionary modelstate)
         {
             if (!modelstate.IsValid) return false;
@@ -147,12 +149,13 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
             await _repo.SaveChangesAsync();
         }
 
-        public async Task<StudentResponseVm> GetStudentResponseAsync(int id)
+        public async Task<StudentResponseVm> GetStudentResponseAsync(int id, string userid)
         {
             if (id < 1) throw new BadRequestException("Bad request");
             Assignment assignment = await _repo.GetByIdAsync(id);
             if (assignment == null) throw new NotFoundException("Not found");
-            StudentResponse studentResponse = await _studentResponseRepo.GetByExpressionAsync(x => x.AssignmentId == id);
+            
+			StudentResponse studentResponse = await _studentResponseRepo.GetByExpressionAsync(x => x.AssignmentId == assignment.Id );
             if (studentResponse != null)
             {
                 StudentResponseVm vm = new StudentResponseVm
@@ -163,7 +166,7 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
                 };
                 if (vm.IsReplied)
                 {
-                    TeacherResponse teacherResponse = await _teacherResponseRepo.GetByExpressionAsync(x => x.StudentId == studentResponse.StudentId);
+                    TeacherResponse teacherResponse = await _teacherResponseRepo.GetByExpressionAsync(x => x.StudentResponseId == studentResponse.Id);
                     vm.TeacherNote = teacherResponse.Note;
                     vm.Point = teacherResponse.Point;
                 }
@@ -246,7 +249,7 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
         public async Task<bool> TeacherResponseAsync(int id, TeacherResponseVm vm, ModelStateDictionary modelstate)
         {
             if (!modelstate.IsValid) return false;
-            StudentResponse studentResponse = await _studentResponseRepo.GetByIdAsync(id, includes: nameof(Assignment));
+            StudentResponse studentResponse = await _studentResponseRepo.GetByIdAsync(id,includes:nameof(Assignment));
             if (studentResponse == null) throw new NotFoundException("Not found");
             if (vm.Point > studentResponse.Assignment.MaxPoint)
             {
@@ -256,24 +259,27 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
             TeacherResponse teacherresponse = new TeacherResponse
             {
                 AssignmentId = studentResponse.AssignmentId,
-                StudentId = studentResponse.StudentId,
+                StudentResponseId = studentResponse.Id,
                 Point = vm.Point
             };
             if (vm.Note != null) teacherresponse.Note = vm.Note;
-            Student student = await _studentRepo.GetByIdAsync(studentResponse.StudentId);
+            Student student = await _studentRepo.GetByIdAsync(studentResponse.StudentId,includes:nameof(Group));
             if (student == null) throw new NotFoundException("Not found");
             student.Point += vm.Point;
             studentResponse.IsReplied = true;
             _studentRepo.Update(student);
             await _studentRepo.SaveChangesAsync();
             await SaveChangesAsync(studentResponse, teacherresponse);
+            Assignment assignment = await _repo.GetByExpressionAsync(x => x.Id == studentResponse.AssignmentId);
+            string emailbody = EmailBodyCreator.EmailBodyForTask(assignment, student);
+            await _emailService.SendEmailAsync(student.EmailAddress, "Task replied", emailbody, true);
             return true;
         }
         public async Task<TeacherResponseVm> GetTeacherResponseUpdate(int id)
         {
             StudentResponse studentResponse = await _studentResponseRepo.GetByIdAsync(id, includes: nameof(Assignment));
             if (studentResponse == null) throw new NotFoundException("Not found");
-            TeacherResponse teacherResponse = await _teacherResponseRepo.GetByExpressionAsync(x => x.StudentId == studentResponse.StudentId);
+            TeacherResponse teacherResponse = await _teacherResponseRepo.GetByExpressionAsync(x => x.StudentResponseId == studentResponse.Id);
             if (teacherResponse == null) throw new NotFoundException("Not found");
             TeacherResponseVm Vm = new TeacherResponseVm
             {
@@ -282,7 +288,6 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
                 Note = teacherResponse.Note,
             };
             return Vm;
-
         }
         public async Task<bool> TeacherResponseUpdate(int id, TeacherResponseVm vm, ModelStateDictionary modelstate)
         {
@@ -294,10 +299,10 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
                 modelstate.AddModelError(String.Empty, "Point can't be higher than the maximum points of the assignment");
                 return false;
             }
-            TeacherResponse exist = await _teacherResponseRepo.GetByExpressionAsync(x => x.StudentId == studentResponse.StudentId);
+            TeacherResponse exist = await _teacherResponseRepo.GetByExpressionAsync(x => x.StudentResponseId == studentResponse.Id);
             if (exist == null) throw new NotFoundException("Not found");
             if (exist.Note != null)
-            {   
+            {
                 exist.Note = vm.Note;
                 _teacherResponseRepo.Update(exist);
                 await _teacherResponseRepo.SaveChangesAsync();
@@ -313,7 +318,7 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
                 await _studentRepo.SaveChangesAsync();
                 _teacherResponseRepo.Update(exist);
                 await _teacherResponseRepo.SaveChangesAsync();
-            }       
+            }
             return true;
         }
 

@@ -24,7 +24,8 @@ namespace LearningManagementSystem.Web.Controllers
         }
         public async new Task<IActionResult> Response(int id)
         {
-            StudentResponseVm vm = await _service.GetStudentResponseAsync(id);
+			var userid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+			StudentResponseVm vm = await _service.GetStudentResponseAsync(id,userid);
             return View(vm);
         }
         [HttpPost]
@@ -33,7 +34,7 @@ namespace LearningManagementSystem.Web.Controllers
             var userid = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             if (await _service.StudentResponseAsync(userid, id, vm, ModelState))
                 return RedirectToAction(nameof(Response));
-            return View(await _service.GetStudentResponseAsync(id));
+            return View(await _service.GetStudentResponseAsync(id,userid));
         }
         public async Task<IActionResult> Detail(int id)
         {
