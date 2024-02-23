@@ -1,11 +1,14 @@
 ﻿using LearningManagementSystem.Application.Abstraction.Services;
 using LearningManagementSystem.Application.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningManagementSystem.Web.Areas.Manage.Controllers
 {
 	[Area("manage")]
-	public class UserController : Controller
+    [Authorize(Roles = "Admin")]
+
+    public class UserController : Controller
 	{
 		private readonly IUserService _userService;
 

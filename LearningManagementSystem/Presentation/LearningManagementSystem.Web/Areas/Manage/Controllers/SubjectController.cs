@@ -1,11 +1,14 @@
 ﻿using LearningManagementSystem.Application.Abstraction;
 using LearningManagementSystem.Application.ViewModels;
 using LearningManagementSystem.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningManagementSystem.Web.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "Admin")]
+
     public class SubjectController : Controller
     {
         private readonly ISubjectService _service;

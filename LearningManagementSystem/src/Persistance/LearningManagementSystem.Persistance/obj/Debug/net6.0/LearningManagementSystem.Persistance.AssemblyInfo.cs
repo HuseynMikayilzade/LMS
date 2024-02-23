@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LearningManagementSystem.Persistance")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b6b750e576e98a1648f071d04b33526da433e691")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e88c5e1697f4dc5b7dc1baad765c530ac8a19fde")]
 [assembly: System.Reflection.AssemblyProductAttribute("LearningManagementSystem.Persistance")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LearningManagementSystem.Persistance")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

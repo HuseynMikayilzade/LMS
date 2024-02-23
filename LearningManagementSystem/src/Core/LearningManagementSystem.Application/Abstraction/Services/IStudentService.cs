@@ -19,7 +19,7 @@ namespace LearningManagementSystem.Application.Abstraction.Services
         Task DeleteAsync(int id);
         Task SoftDeleteAsync(int id);
         Task RecoveryAsync(int id);
-        Task<PaginationVm<Student>> GetAllAsync(bool isdeleted, int page = 1, int take = 10);
+        Task<PaginationVm<Student>> GetAllAsync(string search,bool isdeleted, int page = 1, int take = 10);
         Task<UpdateStudentVm> GetStudentInfo(string userid, UpdateStudentVm vm);
         Task<UpdateStudentVm> StudentForEditAsync(string userid, UpdateStudentVm vm);
         Task<bool> StudentEditAsync(string userid, UpdateStudentVm vm, ModelStateDictionary modelstate);

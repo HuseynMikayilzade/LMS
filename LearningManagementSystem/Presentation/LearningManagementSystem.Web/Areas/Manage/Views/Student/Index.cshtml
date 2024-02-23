@@ -1,119 +1,119 @@
 ﻿@model PaginationVm<Student>
 @{
-    int count = 0;
+	int count = 0;
 }
 <div class="student-group-form">
-    <div class="row">
-        <div class="col-lg-3 col-md-6">
-          
-        </div>
-        <div class="col-lg-3 col-md-6">
-           
-        </div>
-        <div class="col-lg-4 col-md-6">
-            <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-            </div>
-        </div>
-        <div class="col-lg-2">
-            <div class="search-student-btn">
-                <button type="btn" class="btn btn-primary">Search</button>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="col-lg-3 col-md-6">
+		</div>
+		<div class="col-lg-3 col-md-6">
+		</div>
+		<form asp-action="index" asp-controller="student">
+			<div class="col-lg-4 col-md-6">
+				<div class="form-group">
+					<input name="search" type="text" class="form-control" placeholder="Search">
+				</div>
+			</div>
+			<div class="col-lg-2">
+				<div class="search-student-btn">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</div>
+			</div>
+		</form>
+	</div>
 </div>
 <div class="card">
-    <div class="card-header">
-        <h5 class="card-title">Student List</h5>
-    </div>
-    <div class="card-body">
-        <div class="page-header align-items-center">
-            <div class="row align-items-center">
-                <div class="col-7"></div>
-                <div class="col-5 d-flex justify-content-end align-items-center">
-                    <div class="mr-2">
-                        <a asp-action="Graduated" asp-controller="student">
-                            <button type="button" class="btn btn-success fas fa-graduation-cap" alt="Graduated"></button>
-                        </a>
-                    </div>
-                    <div>
-                        <a asp-action="archive" asp-controller="student">
-                            <button type="button" class="btn btn-primary fas fa-archive" alt="archive"></button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
+	<div class="card-header">
+		<h5 class="card-title">Student List</h5>
+	</div>
+	<div class="card-body">
+		<div class="page-header align-items-center">
+			<div class="row align-items-center">
+				<div class="col-7"></div>
+				<div class="col-5 d-flex justify-content-end align-items-center">
+					<div class="mr-2">
+						<a asp-action="Graduated" asp-controller="student">
+							<button type="button" class="btn btn-success fas fa-graduation-cap" alt="Graduated"></button>
+						</a>
+					</div>
+					<div>
+						<a asp-action="archive" asp-controller="student">
+							<button type="button" class="btn btn-primary fas fa-archive" alt="archive"></button>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="table-responsive mt-3 text-center ">
-            <table class="table table-striped mb-0 text-center">
-                <thead>
-                    <tr>
-                        <th>No</th>
-                        <th>Image</th>
-                        <th>Full Name</th>
-                        <th>Group</th>
-                        <th></th>
-                        <th>Settings</th>
-                    </tr>
-                </thead>
-                <tbody class="text-center" id="tableBody">
-                    @foreach (var item in Model.Items)
-                    {
-                        <tr>
-                            <td>@(++count)</td>
-                            <td class="align-middle">
-                                <img class="rounded-circle" src="~/assets/img/@item.Image" width="90" height="90" />
-                            </td>
-                            <td class="align-middle">@item.Name @item.Surname</td>
-                            <td class="align-middle">
-                                @(item.Group?.Name == null ? Html.Raw("<span class=\"text-danger\">empty</span>"):item.Group.Name)
-                                   
-                                   
-                            </td>                        
-                            <td class="align-middle">
-                                @(DateTime.Now.Subtract(item.CreateDate).Days <= 1 ?
-                                    Html.Raw("<span class=\"badge badge-gradient-info\">New</span>") :
-                                    Html.Raw(""))
-                            </td>
-                            <td class="align-middle">
-                                <div class="btn-group" role="group">
-                                    <a asp-action="update" asp-controller="student" asp-route-id="@item.Id" class="btn btn-warning"><i class='fas fa-edit'></i></a>
-                                    <a asp-action="softdelete" asp-controller="student" asp-route-id="@item.Id" id="confirm-text" class="btn btn-danger customDeletebtn"><i class='fas fa-trash'></i></a>
-                                    <a asp-action="detail" asp-controller="student" asp-route-id="@item.Id" class="btn btn-primary"><i class='fas fa-info'></i></a>
-                                </div>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+		<div class="table-responsive mt-3 text-center ">
+			<table class="table table-striped mb-0 text-center">
+				<thead>
+					<tr>
+						<th>No</th>
+						<th>Image</th>
+						<th>Full Name</th>
+						<th>Group</th>
+						<th></th>
+						<th>Settings</th>
+					</tr>
+				</thead>
+				<tbody class="text-center" id="tableBody">
+					@foreach (var item in Model.Items)
+					{
+						<tr>
+							<td>@(++count)</td>
+							<td class="align-middle">
+								<img class="rounded-circle" src="~/assets/img/@item.Image" width="90" height="90" />
+							</td>
+							<td class="align-middle">@item.Name @item.Surname</td>
+							<td class="align-middle">
+								@(item.Group?.Name == null ? Html.Raw("<span class=\"text-danger\">empty</span>") : item.Group.Name)
 
 
-            <div class="pt-5">
-                <nav aria-label="Page navigation example ">
-                    <ul class="pagination justify-content-center">
-                        <!-- Previous button -->
-                        <li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
-                            <a class="page-link" asp-route-page="@(Model.CurrentPage - 1)" asp-action="index" asp-controller="student">Previous</a>
-                        </li>
+							</td>
+							<td class="align-middle">
+								@(DateTime.Now.Subtract(item.CreateDate).Days <= 1 ?
+															Html.Raw("<span class=\"badge badge-gradient-info\">New</span>") :
+															Html.Raw(""))
+							</td>
+							<td class="align-middle">
+								<div class="btn-group" role="group">
+									<a asp-action="update" asp-controller="student" asp-route-id="@item.Id" class="btn btn-warning"><i class='fas fa-edit'></i></a>
+									<a asp-action="softdelete" asp-controller="student" asp-route-id="@item.Id" id="confirm-text" class="btn btn-danger customDeletebtn"><i class='fas fa-trash'></i></a>
+									<a asp-action="detail" asp-controller="student" asp-route-id="@item.Id" class="btn btn-primary"><i class='fas fa-info'></i></a>
+								</div>
+							</td>
+						</tr>
+					}
+				</tbody>
+			</table>
 
-                        <!-- Page buttons -->
-                        @for (int i = 1; i <= Model.TotalPage; i++)
-                        {
-                            <li class="page-item  @(i == Model.CurrentPage ? "disabled active" : "")">
-                                <a class="page-link" asp-route-page="@i" asp-action="index" asp-controller="student">@i</a>
-                            </li>
-                        }
 
-                        <!-- Next button -->
-                        <li class="page-item @(Model.CurrentPage >= Model.TotalPage || Model.TotalPage <= 1 ? "disabled" : "")">
-                            <a class="page-link" asp-route-page="@(Model.CurrentPage + 1)" asp-action="index" asp-controller="student">Next</a>
-                        </li>
+			<div class="pt-5">
+				<nav aria-label="Page navigation example ">
+					<ul class="pagination justify-content-center">
+						<!-- Previous button -->
+						<li class="page-item @(Model.CurrentPage <= 1 ? "disabled" : "")">
+							<a class="page-link" asp-route-page="@(Model.CurrentPage - 1)" asp-action="index" asp-controller="student">Previous</a>
+						</li>
 
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
+						<!-- Page buttons -->
+						@for (int i = 1; i <= Model.TotalPage; i++)
+						{
+							<li class="page-item  @(i == Model.CurrentPage ? "disabled active" : "")">
+								<a class="page-link" asp-route-page="@i" asp-action="index" asp-controller="student">@i</a>
+							</li>
+						}
+
+						<!-- Next button -->
+						<li class="page-item @(Model.CurrentPage >= Model.TotalPage || Model.TotalPage <= 1 ? "disabled" : "")">
+							<a class="page-link" asp-route-page="@(Model.CurrentPage + 1)" asp-action="index" asp-controller="student">Next</a>
+						</li>
+
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
 </div>
 

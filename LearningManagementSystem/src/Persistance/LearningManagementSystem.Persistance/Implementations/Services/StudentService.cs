@@ -72,18 +72,22 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
             _repo.Update(exist);
             await _repo.SaveChangesAsync();
         }
-        public async Task<PaginationVm<Student>> GetAllAsync(bool isdeleted, int page = 1, int take = 10)
+        public async Task<PaginationVm<Student>> GetAllAsync(string seacrh,bool isdeleted, int page = 1, int take = 10)
         {
             if (page < 1 || take < 1) throw new BadRequestException("Bad request");
-            ICollection<Student> students = await _repo.GetAllWhere(x => x.IsDeleted == isdeleted, skip: (page - 1) * take, take: take, orderexpression: x => x.Id,
-                isDescending: true, includes: new string[] { nameof(Group) }).ToListAsync();
+            IQueryable<Student> students =  _repo.GetAllWhere(x => x.IsDeleted == isdeleted, skip: (page - 1) * take, take: take, orderexpression: x => x.Id,
+                isDescending: true, includes: new string[] { nameof(Group) }).AsQueryable();
             if (students == null) throw new NotFoundException("Not found");
             int count = await _repo.GetAll().CountAsync();
             if (count < 0) throw new NotFoundException("Not found");
             double totalpage = Math.Ceiling((double)count / take);
+            if (!String.IsNullOrEmpty(seacrh))
+            {
+                students = students.Where(x => x.Name.ToLower().Contains(seacrh.ToLower()) || x.Surname.ToLower().Contains(seacrh.ToLower()));
+            }
             PaginationVm<Student> vm = new PaginationVm<Student>
             {
-                Items = students,
+                Items =await students.ToListAsync(),
                 CurrentPage = page,
                 TotalPage = totalpage
             };

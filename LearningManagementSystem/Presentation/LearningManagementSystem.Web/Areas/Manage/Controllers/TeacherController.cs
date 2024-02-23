@@ -1,11 +1,14 @@
 ﻿using LearningManagementSystem.Application.Abstraction.Services;
 using LearningManagementSystem.Application.ViewModels;
 using LearningManagementSystem.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningManagementSystem.Web.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "Admin")]
+
     public class TeacherController : Controller
     {
         private readonly ITeacherService _service;
@@ -14,7 +17,7 @@ namespace LearningManagementSystem.Web.Areas.Manage.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(int page = 1, int take = 10)
+        public async Task<IActionResult> Index(string search,int page = 1, int take = 10)
         {
             PaginationVm<Teacher> vm = await _service.GetAllAsync(false,page, take);
             if (vm.Items == null) return NotFound();

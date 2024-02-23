@@ -1,11 +1,14 @@
 ﻿using LearningManagementSystem.Application.Abstraction.Services;
 using LearningManagementSystem.Application.ViewModels;
 using LearningManagementSystem.Domain.Entities;
+using LearningManagementSystem.Domain.Enums;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningManagementSystem.Web.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles ="Admin")]
     public class GroupController : Controller
     {
         private readonly IGroupService _service;

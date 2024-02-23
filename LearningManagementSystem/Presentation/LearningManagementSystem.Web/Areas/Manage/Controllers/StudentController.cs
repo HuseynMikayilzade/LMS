@@ -1,11 +1,14 @@
 ﻿using LearningManagementSystem.Application.Abstraction.Services;
 using LearningManagementSystem.Application.ViewModels;
 using LearningManagementSystem.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LearningManagementSystem.Web.Areas.Manage.Controllers
 {
     [Area("manage")]
+    [Authorize(Roles = "Admin")]
+
     public class StudentController : Controller
     {
         private readonly IStudentService _service;
@@ -14,9 +17,9 @@ namespace LearningManagementSystem.Web.Areas.Manage.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(int page = 1, int take = 10,string search)
+        public async Task<IActionResult> Index(string search,int page = 1, int take = 10)
         {
-            PaginationVm<Student> vm = await _service.GetAllAsync(false, page, take);
+            PaginationVm<Student> vm = await _service.GetAllAsync(search,false, page, take);
             if (vm.Items == null) return NotFound();
             return View(vm);
         }
@@ -43,9 +46,9 @@ namespace LearningManagementSystem.Web.Areas.Manage.Controllers
             await _service.DeleteAsync(id);
             return RedirectToAction(nameof(Index));
         }
-        public async Task<IActionResult> Archive(int page = 1, int take = 10)
+        public async Task<IActionResult> Archive(string search,int page = 1, int take = 10)
         {
-            PaginationVm<Student> vm = await _service.GetAllAsync(true, page, take);
+            PaginationVm<Student> vm = await _service.GetAllAsync(search,true, page, take);
             if (vm.Items == null) return NotFound();
             return View(vm);
         }
