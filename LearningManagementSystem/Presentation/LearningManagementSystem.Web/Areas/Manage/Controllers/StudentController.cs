@@ -14,7 +14,7 @@ namespace LearningManagementSystem.Web.Areas.Manage.Controllers
         {
             _service = service;
         }
-        public async Task<IActionResult> Index(int page = 1, int take = 10)
+        public async Task<IActionResult> Index(int page = 1, int take = 10,string search)
         {
             PaginationVm<Student> vm = await _service.GetAllAsync(false, page, take);
             if (vm.Items == null) return NotFound();

@@ -45,8 +45,8 @@
                                     <select asp-for="Gender" class="form-control select">
                                         <option disabled selected>Choose Gender</option>
                                         @foreach (var item in Enum.GetValues(typeof(Gender)))
-                                        {
-                                            <option value="@item">@item</option>
+                                        {                                          
+                                                <option value="@item">@item</option>
                                             <span asp-validation-for="Gender" class="text-danger"></span>
                                         }
                                     </select>

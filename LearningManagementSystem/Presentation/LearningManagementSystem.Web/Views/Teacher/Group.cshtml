@@ -22,7 +22,7 @@
                 </ul>
                 <div class="tab-content">
                     @await Html.PartialAsync("_HomePartialView",Model)
-                    @await Html.PartialAsync("_TaskPartialView",Model.Assignments)
+                    @await Html.PartialAsync("_TaskPartialView",Model.PaginationAssignments)
                     @await Html.PartialAsync("_AttendancePartialView",Model)
                     @await Html.PartialAsync("_MembersPartialView",Model.Students)
                 </div>

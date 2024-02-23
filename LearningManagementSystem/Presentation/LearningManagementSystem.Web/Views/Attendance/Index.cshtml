@@ -1,4 +1,5 @@
 ﻿@using LearningManagementSystem.Domain.Entities
+@using LearningManagementSystem.Domain.Enums
 @model List<Attendance>
 @{
 	
@@ -72,8 +73,11 @@
 				</table>
 			</div>
 		</div>
-		<div class="card-footer">
-			<a asp-action="update" asp-controller="attendance" asp-route-groupid="@groupid" asp-route-date="@Date"  class="btn btn-warning float-end">Update</a>
-		</div>
+		@if(User.Identity.IsAuthenticated && User.IsInRole(Role.Teacher.ToString()))
+		{
+			<div class="card-footer">
+				<a asp-action="update" asp-controller="attendance" asp-route-groupid="@groupid" asp-route-date="@Date" class="btn btn-warning float-end">Update</a>
+			</div>
+		}
 	</div>
 </div>

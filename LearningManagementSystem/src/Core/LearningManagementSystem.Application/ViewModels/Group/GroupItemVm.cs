@@ -11,6 +11,7 @@ namespace LearningManagementSystem.Application.ViewModels
     {
         public ICollection<Student>? Students { get; set; }
         public ICollection<Assignment>? Assignments { get; set; }
+        public PaginationVm<Assignment>? PaginationAssignments { get; set; }
         public Group Group { get; set; }
         public int AssignmentCount { get; set; }
         public int StudentCount { get; set; }

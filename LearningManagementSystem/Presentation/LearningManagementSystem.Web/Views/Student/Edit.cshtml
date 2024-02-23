@@ -55,7 +55,7 @@
                             <div class="col-12 col-sm-4">
                                 <div class="form-group local-forms">
                                     <label asp-for="Birthday">Date Of Birth </label>
-                                    <input asp-for="Birthday" type="date" max="@DateTime.Today.ToString("yyyy-MM-dd")" class="form-control">
+                                    <input asp-for="Birthday" type="date" max="@DateTime.Today.ToString("dd-MM-yyyy")" class="form-control">
                                     <span asp-validation-for="Birthday" class="text-danger"></span>
                                 </div>
                             </div>

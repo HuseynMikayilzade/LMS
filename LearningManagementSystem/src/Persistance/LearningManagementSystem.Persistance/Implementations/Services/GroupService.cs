@@ -202,14 +202,24 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
         }
 
 
-        public async Task<GroupItemVm> GetGroupItems(int id,int attendancepage)
+        public async Task<GroupItemVm> GetGroupItems(int id,int attendancepage,int assignmentpage)
         {
             if (id < 1) throw new BadRequestException("Bad request");
             ICollection<Student> students = await _studentRepo.GetAllWhere(s => s.GroupId == id).ToListAsync();
             if (students == null) throw new NotFoundException("Not found");
 
-            ICollection<Assignment> assignments = await _assignmentRepo.GetAllWhere(a => a.GroupId == id, x => x.Id, isDescending: true).ToListAsync();
+            ICollection<Assignment> assignments = await _assignmentRepo.GetAllWhere(a => a.GroupId == id, x => x.Id, isDescending: true,skip:((assignmentpage-1)*10),take:10).ToListAsync();
             if (assignments == null) throw new NotFoundException("Not found");
+			int asscount = await _assignmentRepo.GetAll().CountAsync();
+			if (asscount < 0) throw new NotFoundException("Not found");
+			double totalpageassignment = Math.Ceiling((double)asscount / 10);
+			PaginationVm<Assignment> assignpaginate = new PaginationVm<Assignment>
+            {
+                Items = assignments,
+                CurrentPage =assignmentpage,
+                TotalPage = totalpageassignment,
+            };
+
 
             Group group = await _repo.GetByIdAsync(id, includes: new string[] { "GroupSubjects", "GroupSubjects.Subject", "GroupRooms", "GroupRooms.Room" });
             if (group == null) throw new NotFoundException("Not found");   
@@ -217,9 +227,9 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
 
             List<Attendance> attendances = await _attendanceRepo.GetAllWhere(orderexpression: x => x.Date, isDescending: true, includes: nameof(Group)).ToListAsync();
             if (attendances == null) throw new NotFoundException("Not found");
-            int count = attendances.Count();
-			if (count < 0) throw new NotFoundException("Not found");
-            double totalpageattendance = Math.Ceiling((double)count/7);
+            int attcount = attendances.Count();
+			if (attcount < 0) throw new NotFoundException("Not found");
+            double totalpageattendance = Math.Ceiling((double)attcount / 7);
 			PaginationVm<Attendance> AttendancepaginationVm = new PaginationVm<Attendance>
             {
                 Items = attendances.Skip((attendancepage-1)*7).Take(7).ToList(),
@@ -229,6 +239,7 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
 
             GroupItemVm vm = new GroupItemVm
             {
+                PaginationAssignments = assignpaginate,
                 Group = group,
                 Assignments = assignments,
                 Students = students,

@@ -44,9 +44,27 @@
                                     <div class="card-body">
                                         <div class="db-widgets d-flex justify-content-between align-items-center">
                                             <div class="db-info">
-                                                <h3>Description</h3>
-                                                <h6>@Model.Group.Name </h6>
-                                                @* <h6>@Model.Group.GroupRooms.FirstOrDefault(x=>x.GroupId==Model.Group.Id).Room.Name </h6> *@
+                                                <h6>Description [@Model.Group.Name]</h6>
+                                                @if (Model.Group.GroupSubjects != null)
+                                                {
+                                                    <h6>
+                                                        <b>Subject(s):</b>
+                                                        @foreach (var subject in Model.Group.GroupSubjects)
+                                                        {
+                                                            <p>@subject.Subject.Name</p>
+                                                        }
+                                                    </h6>
+                                                }
+                                                @if (Model.Group.GroupRooms != null)
+                                                {
+                                                    <h6>
+                                                        <b>Room(s):</b>
+                                                        @foreach (var subject in Model.Group.GroupRooms)
+                                                        {
+                                                            <p>@subject.Room.Name</p>
+                                                        }
+                                                    </h6>
+                                                }
 
                                             </div>
                                         </div>
