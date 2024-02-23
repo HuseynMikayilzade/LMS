@@ -12,6 +12,6 @@ namespace LearningManagementSystem.Application.Abstraction.Services
         Task<UpdateGroupVm> UpdatedAsync(int id, UpdateGroupVm vm);
         Task<bool> DeleteAsync(int id);
         Task<PaginationVm<Group>> GetAllAsync(int page = 1, int take = 10);
-        Task<GroupItemVm> GetGroupItems(int id);
+        Task<GroupItemVm> GetGroupItems(int id,int attendancepage);
     }
 }

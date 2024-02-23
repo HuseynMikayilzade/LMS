@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "od4DfCRgXF/KVQudzhdVsPJHhFjKgzlWuewE/kmYhD0=",
+  "Hash": "CLQ/ALomIFb/3D/joNtKZjKr28Y0ciGFOVrQ4lyyCNk=",
   "Source": "LearningManagementSystem.Web",
   "BasePath": "_content/LearningManagementSystem.Web",
   "Mode": "Default",
@@ -35564,6 +35564,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\9a43487b-e8fb-42fc-809a-56af5925c6258fbf7864-5cba-45cc-a0c9-f704271c3253futzal.xlsx"
+    },
+    {
+      "Identity": "C:\\Users\\ASUS\\Desktop\\LearningManagementSystem\\LearningManagementSystem\\Presentation\\LearningManagementSystem.Web\\wwwroot\\uploads\\cee68b73-971b-4779-9736-a30549af1ca1Ekran Görüntüsü (4).png",
+      "SourceId": "LearningManagementSystem.Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ASUS\\Desktop\\LearningManagementSystem\\LearningManagementSystem\\Presentation\\LearningManagementSystem.Web\\wwwroot\\",
+      "BasePath": "_content/LearningManagementSystem.Web",
+      "RelativePath": "uploads/cee68b73-971b-4779-9736-a30549af1ca1Ekran Görüntüsü (4).png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\cee68b73-971b-4779-9736-a30549af1ca1Ekran Görüntüsü (4).png"
     },
     {
       "Identity": "C:\\Users\\ASUS\\Desktop\\LearningManagementSystem\\LearningManagementSystem\\Presentation\\LearningManagementSystem.Web\\wwwroot\\uploads\\ea671d23-1548-48d9-8719-b9c539b9c702pexels-mohamed-abdelghaffar-771742.jpg",

@@ -30,9 +30,9 @@ namespace LearningManagementSystem.Web.Controllers
 			var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 			return View(await _service.GetGroupsAsync(userId));
 		}
-		public async Task<IActionResult> Group(int id)
+		public async Task<IActionResult> Group(int id,int attendancepage=1)
 		{
-			GroupItemVm vm = await _groupService.GetGroupItems(id);
+			GroupItemVm vm = await _groupService.GetGroupItems(id,attendancepage);
 			if (vm == null) return NotFound();			
 			return View(vm);
 		}		

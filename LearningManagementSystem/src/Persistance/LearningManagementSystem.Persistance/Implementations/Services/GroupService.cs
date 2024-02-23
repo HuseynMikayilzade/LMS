@@ -202,7 +202,7 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
         }
 
 
-        public async Task<GroupItemVm> GetGroupItems(int id)
+        public async Task<GroupItemVm> GetGroupItems(int id,int attendancepage)
         {
             if (id < 1) throw new BadRequestException("Bad request");
             ICollection<Student> students = await _studentRepo.GetAllWhere(s => s.GroupId == id).ToListAsync();
@@ -214,16 +214,27 @@ namespace LearningManagementSystem.Persistance.Implementations.Services
             Group group = await _repo.GetByIdAsync(id, includes: new string[] { "GroupSubjects", "GroupSubjects.Subject", "GroupRooms", "GroupRooms.Room" });
             if (group == null) throw new NotFoundException("Not found");   
             var assignmentcount = assignments.Select(x => x.IsActive == true).Count();
-           
-            
+
+            List<Attendance> attendances = await _attendanceRepo.GetAllWhere(orderexpression: x => x.Date, isDescending: true, includes: nameof(Group)).ToListAsync();
+            if (attendances == null) throw new NotFoundException("Not found");
+            int count = attendances.Count();
+			if (count < 0) throw new NotFoundException("Not found");
+            double totalpageattendance = Math.Ceiling((double)count/7);
+			PaginationVm<Attendance> AttendancepaginationVm = new PaginationVm<Attendance>
+            {
+                Items = attendances.Skip((attendancepage-1)*7).Take(7).ToList(),
+                CurrentPage = attendancepage,
+                TotalPage = totalpageattendance
+			};
+
             GroupItemVm vm = new GroupItemVm
             {
                 Group = group,
                 Assignments = assignments,
                 Students = students,
                 AssignmentCount = assignmentcount,
-                StudentCount = students.Count(),     
-                Attendances = await _attendanceRepo.GetAllWhere(orderexpression:x=>x.Date,isDescending:true,includes:nameof(Group)).ToListAsync(),
+                StudentCount = students.Count(),      
+                PaginationAttendances = AttendancepaginationVm
             };
             return vm;
         }      

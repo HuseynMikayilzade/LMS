@@ -16,6 +16,7 @@ namespace LearningManagementSystem.Application.ViewModels
         public int StudentCount { get; set; }
         public List<AttendanceVm>? AttendanceVm { get; set; }
         public List<Attendance>? Attendances { get; set; }
+        public PaginationVm<Attendance>? PaginationAttendances { get; set; }
 
     }
 }

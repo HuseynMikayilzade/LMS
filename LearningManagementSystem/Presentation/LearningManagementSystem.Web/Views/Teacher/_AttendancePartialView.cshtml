@@ -1,7 +1,7 @@
 ﻿@model GroupItemVm
 <div class="tab-pane" id="solid-rounded-justified-tab3" role="tabpanel">
     <div>
-        <a asp-action="create" asp-controller="attendance" asp-route-id="@Model.Group.Id" class="btn btn-success mb-3">Create Attendance</a>
+         <a asp-action="create" asp-controller="attendance" asp-route-id="@Model.Group.Id" class="btn btn-success mb-3">Create Attendance</a> 
     </div> 
     <table class="table">
         <thead>
@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var dateGroup in Model.Attendances.GroupBy(a => a.Date))
+            @foreach (var dateGroup in Model.PaginationAttendances.Items.GroupBy(a => a.Date))
             {
                 <tr>
                     <td>@dateGroup.Key.ToString("dd.MM.yy")</td>
@@ -22,7 +22,30 @@
                     </td>
                 </tr>
             }
+            <div class="pt-5">
+                <nav aria-label="Page navigation example ">
+                    <ul class="pagination justify-content-center">
+                        <!-- Previous button -->
+                        <li class="page-item @(Model.PaginationAttendances.CurrentPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-route-attendancepage="@(Model.PaginationAttendances.CurrentPage - 1)" asp-action="group" asp-controller="teacher">Previous</a>
+                        </li>
 
+                        <!-- Page buttons -->
+                        @for (int i = 1; i <= Model.PaginationAttendances.TotalPage; i++)
+                        {
+                            <li class="page-item  @(i == Model.PaginationAttendances.CurrentPage ? "disabled active" : "")">
+                                <a class="page-link" asp-route-attendancepage="@i" asp-action="group" asp-controller="teacher" >@i</a>
+                            </li>
+                        }
+
+                        <!-- Next button -->
+                        <li class="page-item @(Model.PaginationAttendances.CurrentPage >= Model.PaginationAttendances.TotalPage || Model.PaginationAttendances.TotalPage <= 1 ? "disabled" : "")">
+                            <a class="page-link" asp-route-attendancepage="@(Model.PaginationAttendances.CurrentPage + 1)" asp-action="group" asp-controller="teacher">Next</a>
+                        </li>
+
+                    </ul>
+                </nav>
+            </div>
            
         </tbody>
     </table>
